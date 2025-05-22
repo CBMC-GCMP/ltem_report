@@ -18,20 +18,20 @@ library(cowplot)
 # Load data ---------------------------------------------------------------
 
 
-ltem <- readRDS("04-report/outputs/ltem_historic_updated_2025-05-13.RDS") %>% 
+ltem <- readRDS("data/ltem_historic_updated_2025-05-13.RDS") %>% 
   mutate(degree=round(Latitude, 0)) %>% 
   filter(Family!="Carangidae") %>% 
   select(-1)
 
 
-ltem.pfa <- readRDS("04-report/outputs/ltem_pfa_2021-2024.RDS") %>% 
+ltem.pfa <- readRDS("data/ltem_pfa_2021-2024.RDS") %>% 
   mutate(degree=round(Latitude, 0)) %>% 
   select(-1)
 
 
 ltem <- rbind(ltem, ltem.pfa)
 
-sargazo <- readRDS("04-report/outputs/ltem_historic_sargassum_2025-05-12.RDS")
+sargazo <- readRDS("data/ltem_historic_sargassum_2025-05-12.RDS")
 
 # Fish --------------------------------------------------------------------
 

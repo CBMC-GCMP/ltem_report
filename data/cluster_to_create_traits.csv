@@ -1,0 +1,126 @@
+Species,groups_new,groups_old,functional_name,Diet,TrophicLevel,MaxSizeTL,ReefPosition,FeedingType,Solitary,Schooling,Shoaling,Cluster,PC1,PC2
+Ablennes hians,group4,group4,GenPred_schooling,Piscivoro,4.2,45,reef-associated,hunting macrofauna (predator),0,1,0,3,-1.6503750079059096,0.33614467443315477
+Abudefduf declivifrons,group2,group1,EpiBent_schooling,Herbivoro,3,25,reef-associated,variable,0,0,1,7,3.4231168015351416,0.6778081142184951
+Abudefduf troschelii,group1,group1,Plank,Zooplanctivoro,3,40,reef-associated,variable,0,0,1,4,3.3224551856474926,3.2968475551309178
+Acanthurus nigricans,group2,group2,EpiBent_schooling,Herbivoro,2,50,reef-associated,browsing on substrate,0,1,0,7,2.226000341738131,-1.228110451785548
+Acanthurus triostegus,group2,group2,EpiBent_schooling,Herbivoro,2.8,35,reef-associated,grazing on aquatic plants,0,1,0,2,2.612803633570445,-1.847957044679611
+Acanthurus xanthopterus,group2,group2,EpiBent_schooling,Herbivoro,2.4,75,reef-associated,grazing on aquatic plants,0,1,0,2,2.506100552930731,-2.1108717676353814
+Aluterus scriptus,group3,group3,Crip_solitary,Carnivoro,2.8,60,reef-associated,variable,1,0,0,6,1.4179012671002051,-0.9650312562454194
+Anisotremus interruptus,group4,group4,Crip_schooling,Carnivoro,3.5,80,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.6347528330017306,-0.1070867799117282
+Anisotremus taeniatus,group4,group6,Crip_schooling,Carnivoro,4.2,45,demersal,hunting macrofauna (predator),0,1,0,1,-1.7577394110280773,0.6121544002259482
+Apogon dovii,group1,group1,Plank,Zooplanctivoro,3.4,40,reef-associated,selective plankton feeding,0,0,1,4,3.0711223110485695,5.188526475029889
+Apogon pacificus,group1,group1,Plank,Zooplanctivoro,3.4,35,reef-associated,selective plankton feeding,0,0,1,4,3.1146063739254317,5.204270655786375
+Apogon retrosella,group1,group1,Plank,Zooplanctivoro,3.4,25,reef-associated,selective plankton feeding,0,0,1,4,3.2015744996791566,5.235759017299348
+Arothron hispidus,group3,group3,Crip_solitary,Carnivoro,3.2,45,reef-associated,variable,1,0,0,6,1.307184033355607,-0.7808374370720792
+Arothron meleagris,group3,group3,Crip_solitary,Carnivoro,3.06,45,reef-associated,variable,1,0,0,6,1.391593331186922,-0.828773883988438
+Aulostomus chinensis,group5,group5,GenPred_solitary,Piscivoro,4.2,110,reef-associated,hunting macrofauna (predator),1,0,0,6,-2.2673542496403476,-0.44948223875023297
+Azurina atrilobata,group1,group1,Plank,Zooplanctivoro,3.4,75,reef-associated,selective plankton feeding,0,0,1,4,2.766733870910533,5.078317209734486
+Balistes polylepis,group4,group4,Crip_schooling,Carnivoro,3.34,85,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.5817691269285189,-0.17761547142976702
+Bodianus diplotaenia,group3,group3,Crip_solitary,Carnivoro,3.4,90,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.7131150274968867,-0.7537680239997396
+Bothus mancus,group5,group5,GenPred_solitary,Piscivoro,4.12,50,reef-associated,hunting macrofauna (predator),1,0,0,6,-1.6973116106429624,-0.28794432505317646
+Calamus brachysomus,group3,group3,Crip_solitary,Carnivoro,3.3,50,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.30495016888819154,-0.6620548971738215
+Calotomus carolinus,group2,group2,EpiBent_schooling,Herbivoro,2,45,reef-associated,browsing on substrate,0,1,0,7,2.2694844046149933,-1.2123662710290617
+Cantherhines dumerilii,group3,group3,Crip_solitary,Carnivoro,3.1,55,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.22784952057746163,-0.7462797163822483
+Canthigaster punctatissima,group3,group3,Crip_solitary,Carnivoro,3,70,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.2980093536142524,-0.827752577877677
+Caranx caballus,group6,group6,Pelagic,Piscivoro,3.4,70,pelagic-neritic,hunting macrofauna (predator),0,1,0,5,-2.874679029945932,0.6003493388016077
+Caranx lugubris,group6,group6,Pelagic,Piscivoro,4.5,75,benthopelagic,hunting macrofauna (predator),0,1,0,3,-2.6032708605643378,0.6081412419371602
+Caranx melampygus,group4,group4,GenPred_schooling,Piscivoro,4.49,85,reef-associated,hunting macrofauna (predator),0,1,0,3,-2.173095342142817,0.30948815413658043
+Caranx sexfasciatus,group4,group4,GenPred_schooling,Piscivoro,4.5,90,reef-associated,hunting macrofauna (predator),0,1,0,3,-2.2226086405790593,0.29716800530269133
+Cephalopholis panamensis,group5,group5,GenPred_solitary,Piscivoro,4,55,reef-associated,hunting macrofauna (predator),1,0,0,6,-1.6684448468072692,-0.3447768888808271
+Chaetodipterus zonatus,group4,group4,Crip_schooling,Carnivoro,3.3,40,reef-associated,variable,0,1,0,7,1.342062164973901,-0.14990037374055418
+Chaetodon humeralis,group3,group3,Crip_solitary,Carnivoro,2.7,45,reef-associated,variable,0,1,0,7,1.6603322356598158,-0.3710864698528627
+Chanos chanos,group3,group3,Crip_solitary,Carnivoro,2.4,100,benthopelagic,grazing on aquatic plants,0,1,0,2,0.9918421255466563,-1.1175186623086784
+Chilomycterus reticulatus,group3,group3,Crip_solitary,Carnivoro,3.45,55,reef-associated,variable,1,0,0,6,1.0694850186173919,-0.7267250005201253
+Chromis alta,group1,group1,Plank,Zooplanctivoro,3.4,15,reef-associated,selective plankton feeding,0,1,0,4,2.3045409486675132,3.575717160700694
+Chromis limbaughi,group1,group1,Plank,Zooplanctivoro,3.4,45,reef-associated,selective plankton feeding,0,1,0,4,2.0436365714063394,3.4812520761617773
+Cirrhitichthys oxycephalus,group3,group3,Crip_solitary,Carnivoro,4.01,75,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.9504462079884567,-0.49766953445186174
+Cirrhitus rivulatus,group5,group5,GenPred_solitary,Piscivoro,4.02,80,reef-associated,hunting macrofauna (predator),1,0,0,6,-1.8979236323103401,-0.41664972881806356
+Decapterus macarellus,group6,group6,Pelagic,Carnivoro,3.96,20,pelagic-oceanic,selective plankton feeding,0,1,0,7,0.5349188654382968,2.9532718601403216
+Decapterus muroadsi,group6,group6,Pelagic,Carnivoro,3.4,30,pelagic-oceanic,selective plankton feeding,0,1,0,7,0.785587931009831,2.730037710961915
+Dermatolepis dermatolepis,group4,group4,GenPred_schooling,Piscivoro,4.5,75,reef-associated,hunting macrofauna (predator),0,1,0,3,-2.0921564519484717,0.34440054757214955
+Elagatis bipinnulata,group4,group4,GenPred_schooling,Piscivoro,3.59,65,reef-associated,hunting macrofauna (predator),0,1,0,3,-1.4565278902912018,0.0643020041287906
+Elops affinis,group6,group6,Pelagic,Piscivoro,4.05,65,pelagic-neritic,hunting macrofauna (predator),0,1,0,5,-3.2230952784287457,0.8386555945269015
+Epinephelus labriformis,group5,group5,GenPred_solitary,Carnivoro,3.2,95,demersal,hunting macrofauna (predator),1,0,0,1,-1.641342908193966,-0.46864316294768554
+Euthynnus lineatus,group6,group6,Pelagic,Carnivoro,3.83,55,pelagic-oceanic,hunting macrofauna (predator),0,1,0,7,-1.1892838439772064,1.1441189382848427
+Ferdauia orthogrammus,group4,group4,GenPred_schooling,Piscivoro,4.48,75,reef-associated,hunting macrofauna (predator),0,1,0,3,-2.080097980829713,0.33755248372695557
+Fistularia commersonii,group5,group5,GenPred_solitary,Piscivoro,4.3,130,reef-associated,hunting macrofauna (predator),1,0,0,6,-2.5015828567415923,-0.4782186425502069
+Forcipiger flavissimus,group3,group3,Crip_solitary,Carnivoro,3.1,35,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.05391326907001224,-0.683302993356304
+Gnathanodon speciosus,group4,group4,GenPred_schooling,Piscivoro,4,60,reef-associated,hunting macrofauna (predator),0,1,0,3,-1.660242485348904,0.22043149371175566
+Haemulon flaviguttatum,group4,group4,Crip_schooling,Carnivoro,3.1,40,demersal,hunting macrofauna (predator),0,1,0,1,-1.0510394366194564,0.25125506949675963
+Haemulon maculicauda,group4,group4,Crip_schooling,Carnivoro,3.1,80,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.39358341062654567,-0.2440480568156099
+Haemulon scudderii,group4,group4,Crip_schooling,Carnivoro,4.2,40,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.7089268191434056,0.2585489007219535
+Haemulon sexfasciatum,group4,group4,Crip_schooling,Carnivoro,3.4,55,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.3570401630236225,-0.06260619535526825
+Haemulon steindachneri,group4,group4,Crip_schooling,Carnivoro,3.5,50,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.3738484557405564,-0.01262169537281175
+Halichoeres chierchiae,group4,group4,Crip_schooling,Carnivoro,3.2,35,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.06251920032858081,-0.06811011078126473
+Halichoeres dispilus,group4,group4,Crip_schooling,Carnivoro,3.5,45,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.3303643928636941,0.003122485383674338
+Halichoeres melanotis,group3,group3,Crip_solitary,Carnivoro,3,50,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.12407310210680297,-0.7647758548517327
+Halichoeres nicholsi,group4,group4,Crip_schooling,Carnivoro,4,65,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.8057624223401247,0.11134735848758225
+Halichoeres notospilus,group4,group4,Crip_schooling,Carnivoro,3.5,40,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.28688032998683183,0.018866666140160377
+Halichoeres semicinctus,group4,group4,Crip_schooling,Carnivoro,3.2,40,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.10600326320544316,-0.08385429153775083
+Heteropriacanthus cruentatus,group4,group4,Crip_schooling,Carnivoro,3.7,35,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.363980978297562,0.10309148534858746
+Holacanthus clarionensis,group3,group3,Crip_solitary,Herbivoro,2.64,30,reef-associated,hunting macrofauna (predator),0,1,0,7,1.1043257582574373,-1.0524450324343353
+Holacanthus passer,group2,group2,EpiBent_schooling,Herbivoro,3,80,reef-associated,variable,0,1,0,7,1.9607904331242878,-1.1869080922144764
+Hoplopagrus guentherii,group5,group5,GenPred_solitary,Piscivoro,3.85,120,reef-associated,hunting macrofauna (predator),1,0,0,6,-2.1432991308157856,-0.6008117175541018
+Hyporthodus acanthistius,group5,group6,GenPred_solitary,Piscivoro,4.09,60,demersal,hunting macrofauna (predator),1,0,0,1,-2.7715205587263574,0.03964489792654109
+Johnrandallia nigrirostris,group3,group3,Crip_solitary,Carnivoro,2.9,60,reef-associated,variable,0,1,0,7,1.4092953358416367,-0.34983837367038023
+Kyphosus azureus,group2,group3,EpiBent_schooling,Herbivoro,2,40,benthopelagic,browsing on substrate,0,1,0,7,1.8018540588759893,-0.9328813959075651
+Kyphosus elegans,group2,group2,EpiBent_schooling,Herbivoro,2.9,60,reef-associated,variable,0,1,0,7,2.1950190402255334,-1.1581716884145026
+Kyphosus ocyurus,group6,group6,Pelagic,Carnivoro,3.5,55,pelagic-oceanic,hunting macrofauna (predator),0,1,0,7,-0.9903190705176789,1.0311258848391402
+Kyphosus vaigiensis,group2,group2,EpiBent_schooling,Herbivoro,2,80,reef-associated,variable,0,1,0,7,2.5637139890622502,-1.5293112844741807
+Lutjanus aratus,group4,group4,GenPred_schooling,Piscivoro,4.1,60,reef-associated,hunting macrofauna (predator),0,1,0,3,-1.7205348409427,0.25467181293772595
+Lutjanus argentiventris,group4,group4,GenPred_schooling,Piscivoro,4.1,85,reef-associated,hunting macrofauna (predator),0,1,0,3,-1.9379551553270118,0.17595090915529557
+Lutjanus guttatus,group4,group4,GenPred_schooling,Piscivoro,3.8,45,reef-associated,hunting macrofauna (predator),0,1,0,3,-1.4092055855307242,0.19918339752927286
+Lutjanus inermis,group4,group4,Crip_schooling,Carnivoro,3.83,45,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.5293291663232218,0.11611553882937685
+Lutjanus novemfasciatus,group5,group5,GenPred_solitary,Piscivoro,4.2,170,reef-associated,hunting macrofauna (predator),0,1,0,3,-2.737476579827468,-0.05745984447899717
+Lutjanus viridis,group4,group4,Crip_schooling,Carnivoro,3.6,55,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.4776248742112151,0.005874443096672636
+Melichthys niger,group2,group3,EpiBent_schooling,Carnivoro,2.7,40,reef-associated,grazing on aquatic plants,0,1,0,2,1.8438882219034813,-1.089608229917945
+Microlepidotus brevipinnis,group2,group3,EpiBent_schooling,Herbivoro,2,35,reef-associated,hunting macrofauna (predator),0,1,0,7,1.4467127711808712,-1.2873272562370321
+Microlepidotus inornatus,group2,group3,EpiBent_schooling,Herbivoro,2,40,reef-associated,hunting macrofauna (predator),0,1,0,7,1.4032287083040085,-1.3030714369935181
+Microspathodon bairdii,group3,group2,Crip_solitary,Herbivoro,3,45,reef-associated,grazing on aquatic plants,1,0,0,2,2.3535643722938997,-2.3919173310897115
+Microspathodon dorsalis,group3,group3,Crip_solitary,Herbivoro,3.3,90,reef-associated,grazing on aquatic plants,1,0,0,2,1.7813307396207498,-2.430894000220175
+Mugil cephalus,group2,group2,EpiBent_schooling,Herbivoro,2,55,benthopelagic,variable,0,1,0,7,2.2700198948306958,-1.1868496863267395
+Mugil curema,group2,group2,EpiBent_schooling,Herbivoro,2,30,reef-associated,grazing on aquatic plants,0,1,0,2,3.1386265411976773,-2.1061354177308886
+Mulloidichthys dentatus,group4,group4,Crip_schooling,Carnivoro,3.7,55,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.5379172298050114,0.04011476232264312
+Mycteroperca jordani,group5,group5,GenPred_solitary,Piscivoro,4.5,180,reef-associated,hunting macrofauna (predator),1,0,0,6,-3.0570081966978084,-0.5671798116631268
+Mycteroperca prionura,group5,group5,GenPred_solitary,Piscivoro,4.4,80,reef-associated,hunting macrofauna (predator),1,0,0,6,-2.127034583566766,-0.2865365157593756
+Mycteroperca rosacea,group4,group4,GenPred_schooling,Piscivoro,4.5,105,reef-associated,hunting macrofauna (predator),0,1,0,3,-2.353060829209646,0.24993546303323314
+Mycteroperca xenarcha,group5,group5,GenPred_solitary,Piscivoro,4.4,120,demersal,hunting macrofauna (predator),1,0,0,1,-3.480235615589474,-0.043140281550783297
+Myripristis berndti,group1,group6,Plank,Carnivoro,3.72,30,reef-associated,selective plankton feeding,0,1,0,7,1.165638945009943,1.780114971516583
+Myripristis leiognathus,group1,group1,Plank,Zooplanctivoro,3.1,70,reef-associated,selective plankton feeding,0,1,0,4,2.0070933238034163,3.299810214701436
+Nicholsina denticulata,group2,group2,EpiBent_schooling,Herbivoro,2,45,reef-associated,grazing on aquatic plants,1,0,0,2,2.956487928231862,-2.7343205233494157
+Novaculichthys taeniourus,group3,group3,Crip_solitary,Carnivoro,3.25,65,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.40525617972188066,-0.7264075990562648
+Oxycirrhites typus,group3,group3,Crip_solitary,Carnivoro,3.3,60,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.3919182946419163,-0.6935432586867937
+Paralabrax auroguttatus,group3,group3,Crip_solitary,Carnivoro,3.6,50,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.48582723566958047,-0.55933393949591
+Paralabrax maculatofasciatus,group3,group3,Crip_solitary,Carnivoro,3.1,40,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.0973973319468746,-0.6990471741127902
+Paranthias colonus,group1,group1,Plank,Zooplanctivoro,3.76,70,reef-associated,selective plankton feeding,0,0,1,4,2.593165453649729,5.217326539704466
+Pareques fuscovittatus,group3,group3,Crip_solitary,Carnivoro,4,80,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.9879010353059395,-0.5168377471309448
+Pomacanthus zonipectus,group3,group3,Crip_solitary,Carnivoro,3.1,55,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.22784952057746163,-0.7462797163822483
+Prionurus laticlavius,group2,group3,EpiBent_schooling,Herbivoro,2.72,40,reef-associated,browsing on substrate,0,1,0,7,1.8788635072165223,-0.9500917918455887
+Prionurus punctatus,group2,group2,EpiBent_schooling,Herbivoro,2,65,reef-associated,grazing on aquatic plants,0,1,0,2,2.8342381010596407,-2.216344683026291
+Prognathodes falcifer,group3,group3,Crip_solitary,Carnivoro,3.31,25,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.09355909006325956,-0.5799099614687939
+Pseudobalistes naufragium,group3,group3,Crip_solitary,Carnivoro,3.1,75,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.40178577208491106,-0.8092564394081927
+Sarda orientalis,group6,group6,Pelagic,Piscivoro,4.21,50,pelagic-neritic,hunting macrofauna (predator),0,1,0,5,-3.1891108587482324,0.9406726475579126
+Sargocentron suborbitale,group1,group6,Plank,Carnivoro,3.5,60,demersal,selective plankton feeding,0,1,0,1,0.03204922104731105,1.9796708649410124
+Scarus compressus,group2,group2,EpiBent_schooling,Herbivoro,2,95,reef-associated,grazing on aquatic plants,0,1,0,2,2.5733337237984664,-2.3108097675652077
+Scarus perrico,group2,group2,EpiBent_schooling,Herbivoro,2,90,reef-associated,grazing on aquatic plants,0,1,0,2,2.616817786675329,-2.2950655868087213
+Scomberomorus sierra,group6,group6,Pelagic,Piscivoro,4.49,85,pelagic-neritic,hunting macrofauna (predator),0,1,0,5,-3.6623178945488988,0.9263362760952274
+Scorpaena mystes,group4,group4,Crip_schooling,Carnivoro,3.8,50,demersal,hunting macrofauna (predator),1,0,0,1,-1.611740475864982,-0.12150362078348832
+Scorpaenodes xyris,group4,group4,Crip_schooling,Carnivoro,3.2,20,demersal,hunting macrofauna (predator),1,0,0,1,-0.9890819650410311,-0.23248045160039435
+Selene brevoortii,group4,group4,Crip_schooling,Carnivoro,3.76,45,benthopelagic,hunting macrofauna (predator),0,1,0,3,-0.9982389260234301,0.3558880097362082
+Seriola lalandi,group6,group6,Pelagic,Piscivoro,4.1,130,benthopelagic,hunting macrofauna (predator),0,1,0,3,-2.840426129834638,0.2979939767119316
+Seriola rivoliana,group4,group4,GenPred_schooling,Piscivoro,4.5,120,reef-associated,hunting macrofauna (predator),0,1,0,3,-2.4835130178402327,0.20270292076377486
+Serranus psittacinus,group3,group3,Crip_solitary,Carnivoro,3.7,70,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.7200558427708262,-0.5880703432958839
+Serranus socorroensis,group3,group3,Crip_solitary,Carnivoro,3.7,20,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.2852152140022027,-0.4306285357310231
+Sphoeroides annulatus,group3,group3,Crip_solitary,Carnivoro,2.7,45,reef-associated,variable,1,0,0,6,1.608645811324588,-0.9520390332019315
+Sphoeroides lobatus,group3,group3,Crip_solitary,Carnivoro,3.2,35,reef-associated,variable,1,0,0,6,1.3941521591093318,-0.749349075559107
+Sphyraena ensis,group6,group6,Pelagic,Piscivoro,4.4,85,pelagic-neritic,hunting macrofauna (predator),0,1,0,5,-3.6080547745144824,0.8955199887918539
+Sphyraena lucasana,group6,group6,Pelagic,Piscivoro,4.4,70,pelagic-neritic,hunting macrofauna (predator),0,1,0,5,-3.4776025858838953,0.9427525310613123
+Stegastes acapulcoensis,group2,group2,EpiBent_schooling,Herbivoro,2.9,25,reef-associated,grazing on aquatic plants,1,0,0,2,2.5877929793951457,-2.3631809272897373
+Stegastes flavilatus,group2,group2,EpiBent_schooling,Herbivoro,2.9,45,reef-associated,grazing on aquatic plants,1,0,0,2,2.413856727887696,-2.4261576503156816
+Stegastes rectifraenum,group2,group3,EpiBent_schooling,Herbivoro,3.4,90,reef-associated,grazing on aquatic plants,1,0,0,2,1.7210383840269536,-2.3966536809942043
+Stethojulis bandanensis,group3,group3,Crip_solitary,Carnivoro,3.2,20,reef-associated,hunting macrofauna (predator),1,0,0,6,0.01624656396677861,-0.6018301318608753
+Sufflamen verres,group4,group4,Crip_schooling,Carnivoro,3.3,50,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.2532637445529639,-0.08110233382475264
+Synodus lacertinus,group3,group3,Crip_solitary,Carnivoro,4,30,reef-associated,hunting macrofauna (predator),1,0,0,6,-0.5530604065373159,-0.359395939566084
+Thalassoma grammaticum,group4,group4,Crip_schooling,Carnivoro,3.4,40,reef-associated,hunting macrofauna (predator),0,1,0,3,-0.2265879743930355,-0.01537365308581005
+Thalassoma lucasanum,group1,group6,Plank,Carnivoro,3.5,35,reef-associated,selective plankton feeding,0,1,0,7,1.2547980644394323,1.6890420884629618
+Thalassoma virens,group1,group6,Plank,Carnivoro,3.4,30,reef-associated,selective plankton feeding,0,1,0,7,1.358574482910091,1.6705459499934774

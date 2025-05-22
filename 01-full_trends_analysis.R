@@ -33,6 +33,9 @@ ltem <- rbind(ltem, ltem.pfa)
 
 sargazo <- readRDS("data/ltem_historic_sargassum_2025-05-12.RDS")
 
+
+source("size_check.R")
+
 # Fish --------------------------------------------------------------------
 
 

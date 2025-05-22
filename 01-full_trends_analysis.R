@@ -473,3 +473,502 @@ p4_two_periods <- balanced_fish_two_periods %>%
 ggsave("figures/top10_fish_biomass_two_periods.jpg", 
        plot = p3_two_periods / p4_two_periods, 
        width = 15, height = 10, dpi = 300)
+# INV ---------------------------------------------------------------------
+
+# Load main invertebrate data -----
+invertebrate_data <- ltem %>%
+  janitor::clean_names() %>%
+  filter(label == "INV") %>%  # Focus on invertebrates instead of fish
+  filter(region %in% c("Cabo Pulmo", "Corredor",
+                       "La Paz", "La Ventana", "Loreto", "San Basilio", "Santa Rosalia"))
+
+
+
+## Filter data for Holaxonia and Scleractinia ----
+coral_data <- invertebrate_data %>%
+  filter(taxa3 %in% c("Holaxonia", "Scleractinia")) %>%
+  # Handle quantity - assuming 'quantity' is the column name
+  # If it's different, adjust accordingly (biomass, density, etc.)
+  group_by(year, region, protection_level, reef, depth, transect, taxa3) %>%
+  summarise(quantity = sum(quantity, na.rm = TRUE), .groups = "drop") %>%
+  group_by(year, region, protection_level, reef, taxa3) %>%
+  summarise(quantity = mean(quantity, na.rm = TRUE), .groups = "drop")
+
+# Apply the function to get the consistently monitored sites
+balanced_coral_data <- select_consistent_sites(coral_data)
+
+# Calculate mean quantity by year, region, and order
+coral_by_region <- balanced_coral_data %>%
+  dplyr::group_by(year, region, taxa3) %>%
+  dplyr::summarise(
+    mean_quantity = mean(quantity, na.rm = TRUE),
+    se_quantity = sd(quantity, na.rm = TRUE) / sqrt(dplyr::n()),
+    .groups = "drop"
+  )
+
+# Calculate mean quantity by year, protection level, and order
+coral_by_protection <- balanced_coral_data %>%
+  dplyr::group_by(year, protection_level, taxa3) %>%
+  dplyr::summarise(
+    mean_quantity = mean(quantity, na.rm = TRUE),
+    se_quantity = sd(quantity, na.rm = TRUE) / sqrt(dplyr::n()),
+    .groups = "drop"
+  )
+
+# Plot trends by region
+
+coral_by_region %>% 
+  left_join(lats %>% janitor::clean_names()) %>% 
+  mutate(region=factor(region, levels = c("Santa Rosalia",
+                                          "San Basilio",
+                                          "Loreto",
+                                          "Corredor",
+                                          "La Paz", 
+                                          "La Ventana",
+                                          "Cabo Pulmo"))) %>% 
+  filter(!region%in% c("Cabo Pulmo", "La Ventana")) %>% 
+ggplot(
+                            aes(x = year, y = mean_quantity, color = taxa3)) +
+  geom_point(size = 2) +
+  geom_line() +
+  geom_errorbar(
+    aes(
+      ymin = mean_quantity - se_quantity,
+      ymax = mean_quantity + se_quantity
+    ),
+    width = 0.2
+  ) +
+  scale_x_continuous(breaks = seq(1998, 2025, by = 1)) +
+  labs(x = "Año", y = "Abundancia Promedio",
+       # title = "Holaxonia vs Scleractinia quantity by Region"
+       ) +
+  # scale_x_continuous(breaks = seq(min(coral_by_region$year), max(coral_by_region$year), by = 2)) +
+  theme_bw() +
+  facet_wrap(~region, ncol=1)+
+  theme(legend.position = "bottom",
+        legend.title = element_blank(),
+        panel.grid.minor = element_blank(),
+        strip.background = element_rect(color=NA, fill=NA),
+        strip.text = element_text(face="bold", size=10),
+        axis.text.x=element_text(angle=90),
+        axis.title = element_text(face="bold")) +
+
+  scale_y_continuous(labels = comma) +
+  scale_color_viridis_d(direction = -1)
+# theme(legend.position = "bottom")
+ggsave("figures/inv_trends_by_region_2025_region.png",  width = 10, height = 12, dpi = 300)
+
+# Plot trends by protection level
+coral_protection_plot <- ggplot(coral_by_protection, 
+                                aes(x = year, y = mean_quantity, 
+                                    color = protection_level, linetype = taxa3)) +
+  geom_point(size = 2) +
+  geom_line() +
+  geom_errorbar(aes(ymin = mean_quantity - se_quantity, 
+                    ymax = mean_quantity + se_quantity),
+                width = 0.2) +
+  labs(x = "Año", y = "Abundancia Promedio", 
+       # title = "Holaxonia vs Scleractinia quantity by Protection Level"
+       ) +
+  theme_bw() +
+  scale_x_continuous(breaks = seq(1998, 2025, by = 1)) +
+  theme(legend.position = "bottom",
+        legend.title = element_blank(),
+        axis.text.x=element_text(angle=90),
+        panel.grid.minor = element_blank()) +
+  scale_y_continuous(labels = comma) +
+  scale_color_viridis_d()
+# theme(legend.position = "bottom")
+
+# Combine plots using patchwork
+coral_combined_plot <- coral_region_plot + coral_protection_plot + plot_layout(ncol = 1)
+print(coral_combined_plot)
+
+# Fit GAM models to assess trends
+# By region and order
+coral_by_region$region_factor <- as.factor(coral_by_region$region)
+coral_by_region$taxa3_factor <- as.factor(coral_by_region$taxa3)
+
+gam_region_coral <- gam(mean_quantity ~ s(year, by = region_factor:taxa3_factor) + 
+                          region_factor * taxa3_factor, 
+                        data = coral_by_region, 
+                        family = gaussian())
+summary(gam_region_coral)
+
+# By protection level and order
+coral_by_protection$protection_factor <- as.factor(coral_by_protection$protection_level)
+coral_by_protection$taxa3_factor <- as.factor(coral_by_protection$taxa3)
+
+gam_protection_coral <- gam(mean_quantity ~ s(year, by = protection_factor:taxa3_factor) + 
+                              protection_factor * taxa3_factor, 
+                            data = coral_by_protection, 
+                            family = gaussian())
+summary(gam_protection_coral)
+
+
+
+
+
+
+
+
+
+# Save the plots
+
+ggsave("figures/inv_trends_by_protection_2025.png", coral_protection_plot, width = 10, height = 6, dpi = 300)
+
+
+
+
+
+## Asteroidea and Echinoidea ----------
+
+# Filter data for Asteroidea and Echinoidea
+echinoderm_data <- invertebrate_data %>%
+  filter(taxa2 %in% c("Asteroidea", "Echinoidea")) %>%
+  # Calculate richness at the reef level
+  group_by(year, region, protection_level, reef, depth, transect, taxa2) %>%
+
+  summarise(quantity = sum(quantity, na.rm = TRUE), .groups = "drop") %>%
+  group_by(year, region, protection_level, reef, taxa2) %>%
+  summarise(quantity = mean(quantity, na.rm = TRUE), .groups = "drop")
+# Apply the function to get the consistently monitored sites
+balanced_echinoderm_data <- select_consistent_sites(echinoderm_data)
+
+# Calculate mean richness by year, region, and class
+echinoderm_by_region <- balanced_echinoderm_data %>%
+  dplyr::group_by(year, region, taxa2) %>%
+  dplyr::summarise(
+    mean_quantity = mean(quantity, na.rm = TRUE),
+    se_quantity = sd(quantity, na.rm = TRUE) / sqrt(dplyr::n()),
+    .groups = "drop"
+  )
+
+# Calculate mean quantity by year, protection level, and class
+echinoderm_by_protection <- balanced_echinoderm_data %>%
+  dplyr::group_by(year, protection_level, taxa2) %>%
+  dplyr::summarise(
+    mean_quantity = mean(quantity, na.rm = TRUE),
+    se_quantity = sd(quantity, na.rm = TRUE) / sqrt(dplyr::n()),
+    .groups = "drop"
+  )
+
+# Plot trends by region
+
+echinoderm_by_region %>% 
+  left_join(lats %>% janitor::clean_names()) %>% 
+  mutate(region=factor(region, levels = c("Santa Rosalia",
+                                          "San Basilio",
+                                          "Loreto",
+                                          "Corredor",
+                                          "La Paz", 
+                                          "La Ventana",
+                                          "Cabo Pulmo"))) %>% 
+  filter(!region%in% c("Cabo Pulmo", "La Ventana")) %>% 
+  mutate(log_quan=log1p(mean_quantity),
+         se_log=log1p(se_quantity)) %>% 
+ggplot( 
+                                 aes(x = year, y = log_quan, color = taxa2)) +
+  geom_point(size = 2) +
+  geom_line() +
+  geom_errorbar(
+    aes(
+      ymin = log_quan - se_log,
+      ymax = log_quan + se_log
+    ),
+    width = 0.2
+  ) +
+  labs(x = "Año", y = "Abundancia Promedio (Escala logarítmica)") +
+  scale_x_continuous(breaks = seq(min(echinoderm_by_region$year), 
+                                  max(echinoderm_by_region$year), by = 1)) +
+  theme_bw() +
+   facet_wrap(~region, ncol=1)+
+  theme(legend.position = "bottom",
+        legend.title = element_blank(),
+        panel.grid.minor = element_blank(),
+        strip.background = element_rect(color=NA, fill=NA),
+        strip.text = element_text(face="bold", size=10),
+        axis.text.x=element_text(angle=90),
+        axis.title = element_text(face="bold")) +
+  scale_y_continuous(labels = comma) +
+  scale_color_viridis_d()
+
+ ggsave("figures/inv_trends_ech_ast_abund_2025_log.png",  width = 10, height = 12, dpi = 300)
+
+
+ 
+
+# INv bar plots -----
+ 
+
+# Filter data for Asteroidea and Echinoidea
+inv.abund  <- invertebrate_data %>%
+   mutate(taxa=case_when(taxa3== "Holaxonia"~"Holaxonia",
+                         taxa3=="Scleractinia"~ "Scleractinia",
+                         taxa2=="Asteroidea"~"Asteroidea",
+                         taxa2=="Echinoidea"~"Echinoidea")) %>% 
+   filter(taxa %in% c("Asteroidea", "Echinoidea", "Scleractinia", "Holaxonia")) %>%
+   # Calculate richness at the reef level
+   group_by(year, region, protection_level, reef, depth, transect, taxa) %>%
+   
+   summarise(quantity = sum(quantity, na.rm = TRUE), .groups = "drop") %>%
+   group_by(year, region, protection_level, reef, taxa) %>%
+   summarise(quantity = mean(quantity, na.rm = TRUE), .groups = "drop")
+# Apply the function to get the consistently monitored sites
+ balanced_inv <- select_consistent_sites(inv.abund)
+ 
+# 
+invby_region <- balanced_inv %>%
+   dplyr::group_by(year, region, taxa) %>%
+   dplyr::summarise(
+     mean_quantity = mean(quantity, na.rm = TRUE),
+     se_quantity = sd(quantity, na.rm = TRUE) / sqrt(dplyr::n()),
+     .groups = "drop"
+   )
+
+
+absolute.bars.inv <- invby_region %>% 
+  filter(year==2025) %>% 
+  # filter(region!="La Ventana", "Cabo Pulmo" ) %>% 
+  
+# mutate(category=ifelse(year=2025, "2025", "Histórico"))
+
+  left_join(lats %>% janitor::clean_names()) %>% 
+  ggplot(aes(x=reorder(region, -lat), y=mean_quantity, fill=taxa, col=taxa))+
+  geom_bar(stat="identity")+
+  scale_fill_viridis_d()+ scale_color_viridis_d(guide = "none")+
+  labs(y="Abundancia Promedio", x="Región", fill="Grupo Taxonómico")+
+  theme_bw()+ 
+  
+  # coord_flip()+
+  theme(axis.text.x = element_text(angle=0),
+        axis.title = element_text(face="bold", size=10),
+        legend.position = "",
+        legend.title = element_text(hjust=0.5, face="bold"))
+
+
+relative.inv <- invby_region %>% 
+  # filter(region!="La Ventana") %>% 
+  filter(year==2025) %>% 
+
+
+  left_join(lats %>% janitor::clean_names()) %>% 
+  ggplot(aes(x=reorder(region, -lat), y=mean_quantity, fill=taxa, col=taxa))+
+  geom_bar(stat="identity", position="fill")+
+  scale_y_continuous(labels = label_percent(scale = 100)) + 
+  scale_fill_viridis_d()+ scale_color_viridis_d(guide = "none")+
+  labs(y="Abundancia Promedio (%)", x="Región", fill="Grupo Taxonómico")+
+  theme_bw()+ 
+  
+  # coord_flip()+
+  theme(axis.text.x = element_text(angle=0),
+        legend.position = "left",
+        axis.title = element_text(face="bold", size=10),
+        legend.title = element_text(hjust=0.5, face="bold"))
+(biomass.bars <- absolute.bars.inv + relative.inv + plot_layout(ncol = 2))
+
+ggsave("figures/invabund_bars_2025_region.png", biomass.bars, width = 12, height = 6, dpi = 300)
+
+
+### Top 10 Inv Abundances ------
+
+# Filter data for Asteroidea and Echinoidea
+inv.spp <- invertebrate_data %>%
+  mutate(taxa=case_when(taxa3== "Holaxonia"~"Holaxonia",
+                        taxa3=="Scleractinia"~ "Scleractinia",
+                        taxa2=="Asteroidea"~"Asteroidea",
+                        taxa2=="Echinoidea"~"Echinoidea")) %>% 
+  filter(taxa %in% c("Asteroidea", "Echinoidea", "Scleractinia", "Holaxonia")) %>%
+  mutate(species=case_when(str_detect(species, "Muricea")~"Muricea sp",
+                           T~species)) %>% 
+  # Calculate richness at the reef level
+  group_by(year, region, protection_level, reef, depth, transect, taxa, species) %>%
+  
+  summarise(quantity = sum(quantity, na.rm = TRUE), .groups = "drop") %>%
+  group_by(year, region, protection_level, reef, taxa, species) %>%
+  summarise(quantity = mean(quantity, na.rm = TRUE), .groups = "drop")
+# Apply the function to get the consistently monitored sites
+balanced_inv <- select_consistent_sites(inv.spp) %>% 
+  mutate(period=case_when( year< 2014 ~"Histórico (1998-2013)",
+                         year>= 2014 & year<=2024 ~"Calentamiento (2014-2024)",
+                         year ==2025 ~"2025"))
+
+
+
+
+
+
+
+
+taxa.inv <- taxa.inv <- balanced_inv %>% 
+  select(taxa, species) %>% 
+  distinct()
+
+
+ p3 <- balanced_inv %>% 
+  # filter(year>2021) %>% 
+   left_join(lats %>% janitor::clean_names()) %>% 
+   mutate(degree=ifelse(round(lat,0)>=26, "Arriba de 26°", "Debajo de 26°")) %>%  
+  filter(!region %in% c("Cabo Pulmo", "La Ventana"), degree!="Arriba de 26°") %>% 
+   mutate(period=factor(period, levels = c("Histórico (1998-2013)", "Calentamiento (2014-2024)", "2025")),
+          species=ifelse(str_detect(species, "Pocillopora"), "Pocillopora sp", species)
+          ) %>%
+
+   
+  group_by(period, taxa, species) %>% 
+  summarise(quantity = mean(quantity, na.rm=T)) %>%
+  # filter(MPA=="MPA") %>%
+  # mutate(year=factor(year)) %>% 
+  group_by(period) %>%
+  top_n(10, quantity) %>%
+  ungroup() %>% 
+  mutate(species= reorder_within(species, quantity, period)) %>% 
+  ggplot(aes(x=species, y = quantity, fill=taxa)) +
+  geom_col()+
+  coord_flip()+
+  facet_wrap(~period, scales="free_y", nrow=1)+
+  scale_x_reordered() +
+  # scale_color_material_d() +
+  # scale_fill_manual(values = c("firebrick", "darkgreen"))+
+  labs(y = "Abundancia Promedio", x="", fill="Grupo Taxonómico",  title= "Latitud menor a 26°") +
+  theme_classic() +
+   theme(legend.position = "") +
+   guides(colour = "none")+
+   theme(axis.text.y = element_text(face= "italic"),
+         axis.title = element_text(face="bold"),
+         plot.title = element_text(hjust=0.5, face="bold", size=15),
+         strip.background = element_blank(),  # Removes the background
+         strip.text = element_text(face = "bold", hjust = 0.5, size=12),
+         legend.title.position = "bottom",
+         legend.title = element_text(face="bold", hjust=0.5))+
+   scale_fill_viridis_d()
+
+
+ 
+ 
+
+ p4 <- balanced_inv %>% 
+   # filter(year>2021) %>% 
+   left_join(lats %>% janitor::clean_names()) %>% 
+   mutate(degree=ifelse(round(lat,0)>=26, "Arriba de 26°", "Debajo de 26°")) %>%  
+   filter(!region %in% c("Cabo Pulmo", "La Ventana"), degree!="Debajo de 26°") %>% 
+   mutate(period=factor(period, levels = c("Histórico (1998-2013)", "Calentamiento (2014-2024)", "2025")),
+          species=ifelse(str_detect(species, "Pocillopora"), "Pocillopora sp", species)
+   ) %>%
+   
+   
+   group_by(period, taxa, species) %>% 
+   summarise(quantity = mean(quantity, na.rm=T)) %>%
+   # filter(MPA=="MPA") %>%
+   # mutate(year=factor(year)) %>% 
+   group_by(period) %>%
+   top_n(10, quantity) %>%
+   ungroup() %>% 
+   mutate(species= reorder_within(species, quantity, period)) %>% 
+   ggplot(aes(x=species, y = quantity, fill=taxa)) +
+   geom_col()+
+   coord_flip()+
+   facet_wrap(~period, scales="free_y", nrow=1)+
+   scale_x_reordered() +
+   # scale_color_material_d() +
+   # scale_fill_manual(values = c("firebrick", "darkgreen"))+
+   labs(y = "", x="", fill="Grupo Taxonómico", title= "Latitud mayor a 26°") +
+   theme_classic() +
+   theme(legend.position = "bottom") +
+   guides(colour = "none")+
+   theme(axis.text.y = element_text(face= "italic"),
+         axis.title = element_text(face="bold"),
+         plot.title = element_text(hjust=0.5, face="bold", size=15),
+         strip.background = element_blank(),  # Removes the background
+         strip.text = element_text(face = "bold", hjust = 0.5, size=12),
+         legend.title.position = "bottom",
+         
+         legend.title = element_text(face="bold", hjust=0.5))+
+   scale_fill_viridis_d()
+
+
+plot_grid(
+  p4 + theme(legend.position = "none"),  # Remove legend from p1
+  p3 + theme(legend.position = "bottom"),  # Remove legend from p2
+  labels = c("A", "B"),   
+  
+  # rel_heights = c(3, 0.1),
+  # Add labels A and B
+  ncol = 1                               # Arrange plots in one column
+)
+ggsave("figures/top10_inv_abund_hist.jpg", width = 12, height = 12, dpi = 300)
+
+# Diversity Indexes -------------------------------------------------------
+richness <-  ltem %>%
+   janitor::clean_names() %>% 
+   filter(taxa2 %in% c("Asteroidea", "Echinoidea")|taxa3 %in% c("Holaxonia", "Scleractinia")|label=="PEC" ) %>%
+
+ group_by(year, region, protection_level, reef, depth, transect, label) %>%
+   summarise(richness = n_distinct(species), .groups = "drop") %>%
+   group_by(year, region, protection_level, reef, label) %>%
+   summarise(richness = mean(richness), .groups = "drop")
+ 
+ # Apply the function to get the consistently monitored sites
+ balanced_richness <- select_consistent_sites(richness)
+ 
+ 
+ 
+ # Calculate mean richness by year, region, and class
+ richness_by_region <- balanced_richness %>%
+   dplyr::group_by(year, region, label) %>%
+   dplyr::summarise(
+     mean_richness = mean(richness, na.rm = TRUE),
+     se_richness = sd(richness, na.rm = TRUE) / sqrt(dplyr::n()),
+     .groups = "drop"
+   )
+ 
+ 
+richness_by_region %>% 
+  filter(region %in% c("Corredor",
+                       "La Paz",  "Loreto", "San Basilio", "Santa Rosalia")) %>% 
+  mutate(category=ifelse(year<2025, "Histórico", "2025"),
+         category=factor(category, levels=c("Histórico", "2025"))) %>% 
+  group_by(category, region, label) %>% 
+  summarise(richness=mean(mean_richness, na.rm=T)) %>% 
+  filter(label=="INV") %>% 
+  left_join(lats %>% janitor::clean_names()) %>% 
+  ggplot(aes(x=reorder(region, richness), y=richness, fill= region)) +
+  geom_bar(stat="identity")+
+  facet_wrap(~category, ncol=2)+
+  labs(x="Región", y="Riqueza de especies (Invertebrados)")+
+  coord_flip()+
+  scale_fill_viridis_d()+
+  theme_bw()+
+  theme(axis.title = element_text(face="bold", size=10),
+        legend.position = "")
+
+
+
+## Shannon Index -----
+library(vegan)
+library(dplyr)
+library(tidyr)
+library(vegan)
+library(tibble)
+
+shannon_transect_hist <- ltem %>%
+  filter(!is.na(Quantity), !is.na(Species)) %>%
+  group_by(Region, Reef, Transect, Species) %>%
+  summarise(total_quantity = sum(Quantity, na.rm = TRUE), .groups = "drop") %>%
+  unite(transect_id, Region, Reef, Transect, remove = FALSE) %>%
+  pivot_wider(names_from = Species, values_from = total_quantity, values_fill = 0) %>%
+  # Asegura que solo las columnas numéricas vayan a vegan::diversity
+  {
+    data_wide <- .
+    species_matrix <- data_wide %>%
+      select(where(is.numeric)) %>%
+      as.data.frame()
+    
+    shannon_values <- vegan::diversity(species_matrix, index = "shannon")
+    
+    tibble::tibble(transect_id = data_wide$transect_id,
+                   Region = data_wide$Region,
+                   Reef = data_wide$Reef,
+                   Transect = data_wide$Transect,
+                   Shannon_Index = shannon_values)
+  }

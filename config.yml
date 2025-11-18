@@ -1,0 +1,28 @@
+# LTEM v2 Pipeline configuration
+# EN: Path to the new LTEM data file (xlsx/xls/csv/rds). Update this to your current file.
+# ES: Ruta al archivo de datos LTEM nuevo (xlsx/xls/csv/rds). Actualiza a tu archivo actual.
+new_ltem_path: "data/raw/ltem_loreto_29-31_oct.xlsx" # CHANGE to your current new data file
+# EN: Folder where the updated historical dataset (Stage 4) is written.
+# ES: Carpeta donde se guarda el conjunto histórico actualizado (Etapa 4).
+historical_dir: "outputs/historical"
+# EN: Fallback RDS used by Stage 3 if no recent historical file is found in historical_dir.
+# ES: RDS de respaldo usado por la Etapa 3 si no se encuentra un archivo histórico reciente en historical_dir.
+historical_fallback: "outputs/historical/ltem_historic_updated_2025-08-25.RDS"
+# EN: Directory with reference lists (species, reefs) and optional size list used in Stages 1–2.
+# ES: Directorio con listas de referencia (especies, arrecifes) y lista de tamaños opcional usadas en Etapas 1–2.
+lists_dir: "data/lists"
+# EN: Root folder for pipeline outputs (temp artifacts and review files).
+# ES: Carpeta raíz para salidas del pipeline (artefactos temporales y archivos de revisión).
+outputs_dir: "outputs"
+# EN: Folder for figures produced by the pipeline or reports.
+# ES: Carpeta para figuras producidas por el pipeline o reportes.
+figures_dir: "figures"
+# EN: Method used to compute reference thresholds in Stage 3 (e.g., "quantile").
+# ES: Método para calcular umbrales de referencia en la Etapa 3 (p. ej., "quantile").
+threshold_method: "quantile"
+# EN: Parameter for the threshold method (for quantiles, a probability between 0 and 1).
+# ES: Parámetro para el método de umbral (para cuantiles, una probabilidad entre 0 y 1).
+threshold_p: 0.95
+# EN: When true, Stage 4 (update) is skipped — no writes are performed. Set to false to apply updates.
+# ES: Cuando es true, se omite la Etapa 4 (actualización) — no se realizan escrituras. Pon en false para aplicar cambios.
+dry_run: true

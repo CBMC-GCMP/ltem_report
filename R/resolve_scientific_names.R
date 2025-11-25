@@ -31,12 +31,35 @@ resolve_names <- function(clean_spp, Label){
     ## Part I: 
     #Retrieve best species matches from WoRMS and Fishbase      
     sources <- c(worms = 9, fishbase = 155)
-    resolved_names <- sources %>% 
-      map(~ taxize::gna_verifier(data_source_ids = .x, 
-                                names = clean_spp$Species,
-                                best_match_only = T, 
-                                fields = c("all"), 
-                                canonical = T ))
+    input_names <- unique(stringr::str_squish(clean_spp$Species))
+    input_names <- input_names[!is.na(input_names) & nzchar(input_names)]
+    chunks <- split(input_names, ceiling(seq_along(input_names) / 50))
+    fetch_source <- function(src_id){
+      purrr::map_dfr(chunks, function(ch){
+        res <- purrr::possibly(taxize::gna_verifier, otherwise = NULL)(
+          data_source_ids = src_id,
+          names = ch,
+          best_match_only = TRUE,
+          fields = c("all"),
+          canonical = TRUE
+        )
+        if (is.null(res)) {
+          purrr::map_dfr(ch, function(nm){
+            res1 <- purrr::possibly(taxize::gna_verifier, otherwise = NULL)(
+              data_source_ids = src_id,
+              names = nm,
+              best_match_only = TRUE,
+              fields = c("all"),
+              canonical = TRUE
+            )
+            if (is.null(res1)) dplyr::tibble() else res1
+          })
+        } else {
+          res
+        }
+      })
+    }
+    resolved_names <- purrr::map(sources, fetch_source)
     
     ## Part II:
     #Leave only the correct results, and format it as data.frame
@@ -44,6 +67,9 @@ resolve_names <- function(clean_spp, Label){
     
     resolved_names_df <- resolved_names %>% 
       map(~ {
+        if (is.null(.x) || (is.data.frame(.x) && nrow(.x) == 0)) {
+          return(dplyr::tibble(user_supplied_name = character(), matched_name2 = character(), taxon_id = character()))
+        }
         # Check if the output has the expected columns
         if("match_value" %in% names(.x)) {
           # Old format
@@ -51,7 +77,7 @@ resolve_names <- function(clean_spp, Label){
             filter(!match_value %in% c("Could only match genus") & 
                      str_count(matched_name2, "\\w+") >= 2) %>% 
             select(user_supplied_name, matched_name2, taxon_id)
-        } else {
+        } else if (all(c("submittedName","matchedCanonicalSimple","matchedNameID") %in% names(.x))) {
           # New format - based on the actual column names we see
           # Filter out genus-only matches and ensure we have at least genus and species
           .x %>% 
@@ -60,6 +86,8 @@ resolve_names <- function(clean_spp, Label){
             select(user_supplied_name = submittedName, 
                    matched_name2 = matchedCanonicalSimple,
                    taxon_id = matchedNameID)
+        } else {
+          dplyr::tibble(user_supplied_name = character(), matched_name2 = character(), taxon_id = character())
         }
       }) %>% 
       reduce(full_join, by = "user_supplied_name") %>% 
@@ -87,16 +115,42 @@ resolve_names <- function(clean_spp, Label){
   }else if(Label=="inv"){
     ##Part I:
     sources <- c(worms = 9)
-    resolved_names <- sources %>% 
-      map(~ taxize::gna_verifier(data_source_ids = .x, 
-                                names = clean_spp$Species,
-                                best_match_only = T, 
-                                fields = c("all"), 
-                                canonical = T ))
+    input_names <- unique(stringr::str_squish(clean_spp$Species))
+    input_names <- input_names[!is.na(input_names) & nzchar(input_names)]
+    chunks <- split(input_names, ceiling(seq_along(input_names) / 50))
+    fetch_source <- function(src_id){
+      purrr::map_dfr(chunks, function(ch){
+        res <- purrr::possibly(taxize::gna_verifier, otherwise = NULL)(
+          data_source_ids = src_id,
+          names = ch,
+          best_match_only = TRUE,
+          fields = c("all"),
+          canonical = TRUE
+        )
+        if (is.null(res)) {
+          purrr::map_dfr(ch, function(nm){
+            res1 <- purrr::possibly(taxize::gna_verifier, otherwise = NULL)(
+              data_source_ids = src_id,
+              names = nm,
+              best_match_only = TRUE,
+              fields = c("all"),
+              canonical = TRUE
+            )
+            if (is.null(res1)) dplyr::tibble() else res1
+          })
+        } else {
+          res
+        }
+      })
+    }
+    resolved_names <- purrr::map(sources, fetch_source)
     
     #Part II:
     resolved_names_df <- resolved_names %>% 
       map(~ {
+        if (is.null(.x) || (is.data.frame(.x) && nrow(.x) == 0)) {
+          return(dplyr::tibble(user_supplied_name = character(), matched_name2 = character(), taxon_id = character()))
+        }
         # Check if the output has the expected columns
         if("match_value" %in% names(.x)) {
           # Old format
@@ -104,7 +158,7 @@ resolve_names <- function(clean_spp, Label){
             filter(!match_value %in% c("Could only match genus") &
                      str_count(matched_name2, "\\w+") >= 2) %>% 
             select(user_supplied_name, matched_name2, taxon_id)
-        } else {
+        } else if (all(c("submittedName","matchedCanonicalSimple","matchedNameID") %in% names(.x))) {
           # New format - based on the actual column names we see
           # Filter out genus-only matches and ensure we have at least genus and species
           .x %>% 
@@ -113,6 +167,8 @@ resolve_names <- function(clean_spp, Label){
             select(user_supplied_name = submittedName, 
                    matched_name2 = matchedCanonicalSimple,
                    taxon_id = matchedNameID)
+        } else {
+          dplyr::tibble(user_supplied_name = character(), matched_name2 = character(), taxon_id = character())
         }
       }) %>% 
       reduce(full_join, by = "user_supplied_name") %>% 

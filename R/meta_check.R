@@ -163,21 +163,45 @@ data_check <- function(new_data, thresholds_path = "data/auxiliar/ref_thresholds
     if (is.null(historical_data)) stop("Reference thresholds not found and historical_data not provided")
     ref <- outlier_thresholds(historical_data, method = method, p = p)
   }
+  ref <- ref %>% mutate(IDSpecies = as.character(IDSpecies), Species = as.character(Species))
+  new_data <- new_data %>% mutate(IDSpecies = as.character(IDSpecies), Species = as.character(Species))
   df <- new_data %>% 
     left_join(ref, by = c("IDSpecies", "Species"))
+  if ("Size_mad" %in% names(df)) {
+    df <- df %>% mutate(
+      Severe_Size_min = pmax(0, Size_median - 3.5 * Size_mad),
+      Severe_Size_max = Size_median + 3.5 * Size_mad
+    )
+  } else if (all(c("Size_median","Size_IQR") %in% names(df))) {
+    df <- df %>% mutate(
+      Severe_Size_min = pmax(0, Size_median - 3 * Size_IQR),
+      Severe_Size_max = Size_median + 3 * Size_IQR
+    )
+  }
+  if ("Quantity_mad" %in% names(df)) {
+    df <- df %>% mutate(
+      Severe_Quantity_min = pmax(0, Quantity_median - 3.5 * Quantity_mad),
+      Severe_Quantity_max = Quantity_median + 3.5 * Quantity_mad
+    )
+  } else if (all(c("Quantity_median","Quantity_IQR") %in% names(df))) {
+    df <- df %>% mutate(
+      Severe_Quantity_min = pmax(0, Quantity_median - 3 * Quantity_IQR),
+      Severe_Quantity_max = Quantity_median + 3 * Quantity_IQR
+    )
+  }
   size_out <- NULL
   quantity_out <- NULL
-  if (type %in% c("Size", "Both") && all(c("Size_min", "Size_max") %in% names(df))) {
+  if (type %in% c("Size", "Both") && all(c("Severe_Size_min", "Severe_Size_max") %in% names(df))) {
     size_out <- df %>%
-      filter(!is.na(Size), !is.na(Size_min), (Size < Size_min | Size > Size_max)) %>%
+      filter(!is.na(Size), !is.na(Severe_Size_min), (Size < Severe_Size_min | Size > Severe_Size_max)) %>%
       mutate(Type = "Size") %>%
-      select(any_of(c("ID", "Type", "Label", "Year", "Month", "Day", "Region", "IDReef", "Reef", "Depth", "Transect", "IDSpecies", "Species", "Size", "Size_min", "Size_max", "Quantity", "sample_flag")))
+      select(any_of(c("ID", "Type", "Label", "Year", "Month", "Day", "Region", "IDReef", "Reef", "Depth", "Transect", "Observer", "IDSpecies", "Species", "Size", "Severe_Size_min", "Severe_Size_max", "Quantity", "sample_flag")))
   }
-  if (type %in% c("Quantity", "Both") && all(c("Quantity_min", "Quantity_max") %in% names(df))) {
+  if (type %in% c("Quantity", "Both") && all(c("Severe_Quantity_min", "Severe_Quantity_max") %in% names(df))) {
     quantity_out <- df %>%
-      filter(!is.na(Quantity), !is.na(Quantity_min), (Quantity < Quantity_min | Quantity > Quantity_max)) %>%
+      filter(!is.na(Quantity), !is.na(Severe_Quantity_min), (Quantity < Severe_Quantity_min | Quantity > Severe_Quantity_max)) %>%
       mutate(Type = "Quantity") %>%
-      select(any_of(c("ID", "Type", "Label", "Year", "Month", "Day", "Region", "IDReef", "Reef", "Depth", "Transect", "IDSpecies", "Species", "Quantity", "Quantity_min", "Quantity_max", "Size", "sample_flag")))
+      select(any_of(c("ID", "Type", "Label", "Year", "Month", "Day", "Region", "IDReef", "Reef", "Depth", "Transect", "Observer", "IDSpecies", "Species", "Quantity", "Severe_Quantity_min", "Severe_Quantity_max", "Size", "sample_flag")))
   }
   outliers <- bind_rows(size_out, quantity_out)
   dir.create(dirname(thresholds_path), showWarnings = FALSE, recursive = TRUE)

@@ -1,16 +1,16 @@
 # LTEM v2 Pipeline configuration
 # EN: Path to the new LTEM data file (xlsx/xls/csv/rds). Update this to your current file.
 # ES: Ruta al archivo de datos LTEM nuevo (xlsx/xls/csv/rds). Actualiza a tu archivo actual.
-new_ltem_path: "data/raw/ltem_loreto_29-31_oct.xlsx" # CHANGE to your current new data file
+new_ltem_path: "data/raw/2025/OCT-NOV/ltem_OCT-NOV_2025.xlsx" # CHANGE to your current new data file
 # EN: Folder where the updated historical dataset (Stage 4) is written.
 # ES: Carpeta donde se guarda el conjunto histórico actualizado (Etapa 4).
 historical_dir: "outputs/historical"
 # EN: Fallback RDS used by Stage 3 if no recent historical file is found in historical_dir.
 # ES: RDS de respaldo usado por la Etapa 3 si no se encuentra un archivo histórico reciente en historical_dir.
-historical_fallback: "outputs/historical/ltem_historic_updated_2025-08-25.RDS"
+historical_fallback: "data/ltem_historic_updated_2025-05-13.RDS"
 # EN: Directory with reference lists (species, reefs) and optional size list used in Stages 1–2.
 # ES: Directorio con listas de referencia (especies, arrecifes) y lista de tamaños opcional usadas en Etapas 1–2.
-lists_dir: "data/lists"
+lists_dir: "data/lists/updates/"
 # EN: Root folder for pipeline outputs (temp artifacts and review files).
 # ES: Carpeta raíz para salidas del pipeline (artefactos temporales y archivos de revisión).
 outputs_dir: "outputs"

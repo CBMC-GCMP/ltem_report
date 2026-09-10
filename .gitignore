@@ -1,0 +1,15 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+.Renviron
+.env
+data/
+outputs/
+figures/
+reports/
+connect_db/
+~$*.xlsx
+.DS_Store
+Thumbs.db

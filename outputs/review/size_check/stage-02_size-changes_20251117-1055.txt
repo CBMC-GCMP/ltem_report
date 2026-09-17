@@ -1,0 +1,1 @@
+CSV of rows where Size was normalized via IDSize mapping. Review to confirm expected canonical sizes.

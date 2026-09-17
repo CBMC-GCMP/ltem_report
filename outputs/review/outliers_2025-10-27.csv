@@ -1,0 +1,33 @@
+"Type","Label","Year","Month","Day","Region","IDReef","Reef","Depth","Transect","IDSpecies","Species","Size","Size_min","Size_max","Quantity","sample_flag","Quantity_min","Quantity_max"
+"Size","PEC",2025,5,6,"La Paz","160","ESPIRITU_SANTO_PARTIDA_NORESTE","20",2,"246","Chaetodon humeralis",5,10,20,1,"Sufficient data",NA,NA
+"Size","PEC",2025,5,6,"La Paz","164","ESPIRITU_SANTO_SOANY","10",1,"226","Balistes polylepis",45,10,40,2,"Sufficient data",NA,NA
+"Size","PEC",2025,5,6,"La Paz","164","ESPIRITU_SANTO_SOANY","10",2,"271","Fistularia commersonii",15,20,100,20,"Sufficient data",NA,NA
+"Size","PEC",2025,5,6,"La Paz","160","ESPIRITU_SANTO_PARTIDA_NORESTE","5",3,"367","Scarus perrico",10,20,65,50,"Sufficient data",NA,NA
+"Size","PEC",2025,5,6,"La Paz","159","ESPIRITU_SANTO_PAILEBOTE","5",3,"352","Plagiotremus azaleus",20,5,15,4,"Sufficient data",NA,NA
+"Size","PEC",2025,5,6,"La Paz","159","ESPIRITU_SANTO_PAILEBOTE","5",4,"250","Azurina atrilobata",20,5,15,10,"Sufficient data",NA,NA
+"Size","PEC",2025,5,6,"La Paz","164","ESPIRITU_SANTO_SOANY","10",4,"250","Azurina atrilobata",25,5,15,5,"Sufficient data",NA,NA
+"Size","INV",2025,5,6,"La Paz","159","ESPIRITU_SANTO_PAILEBOTE","15",1,"200","Tubastraea coccinea",24,2,22,1,"Sufficient data",NA,NA
+"Size","INV",2025,5,5,"Corredor","91","PORTUGUES","5",3,"163","Pocillopora elegans",102,4,96,1,"Sufficient data",NA,NA
+"Size","INV",2025,5,5,"Corredor","91","PORTUGUES","5",4,"161","Pocillopora damicornis",102,4,100,2,"Sufficient data",NA,NA
+"Size","INV",2025,5,5,"Corredor","91","PORTUGUES","5",4,"165","Pocillopora meandrina",6,8,90,1,"Sufficient data",NA,NA
+"Size","INV",2025,4,21,"Corredor","101","SAN_DIEGO_ABNEGADO","10",4,"163","Pocillopora elegans",2,4,96,1,"Sufficient data",NA,NA
+"Quantity","PEC",2025,5,6,"La Paz","160","ESPIRITU_SANTO_PARTIDA_NORESTE","5",1,"365","Scarus compressus",20,NA,NA,18,"Sufficient data",1,10
+"Quantity","PEC",2025,5,6,"La Paz","160","ESPIRITU_SANTO_PARTIDA_NORESTE","5",2,"397","Thalassoma lucasanum",5,NA,NA,260,"Sufficient data",1,220
+"Quantity","PEC",2025,5,6,"La Paz","160","ESPIRITU_SANTO_PARTIDA_NORESTE","5",2,"408","Abudefduf concolor",20,NA,NA,2,"Very limited data",3.925,182.975
+"Quantity","PEC",2025,5,6,"La Paz","159","ESPIRITU_SANTO_PAILEBOTE","5",1,"366","Scarus ghobban",35,NA,NA,18,"Sufficient data",1,13
+"Quantity","PEC",2025,5,6,"La Paz","164","ESPIRITU_SANTO_SOANY","10",2,"260","Diodon holocanthus",20,NA,NA,7,"Sufficient data",1,6
+"Quantity","PEC",2025,5,6,"La Paz","164","ESPIRITU_SANTO_SOANY","10",2,"271","Fistularia commersonii",15,NA,NA,20,"Sufficient data",1,6.04999999999995
+"Quantity","PEC",2025,5,5,"Corredor","91","PORTUGUES","5",3,"339","Nicholsina denticulata",30,NA,NA,37,"Sufficient data",1,12.1
+"Quantity","PEC",2025,5,5,"Corredor","91","PORTUGUES","5",4,"366","Scarus ghobban",30,NA,NA,15,"Sufficient data",1,13
+"Quantity","PEC",2025,5,5,"Corredor","474","PORTUGUES_BOTAFUEGO","2",4,"397","Thalassoma lucasanum",10,NA,NA,250,"Sufficient data",1,220
+"Quantity","PEC",2025,5,5,"Corredor","474","PORTUGUES_BOTAFUEGO","2",4,"397","Thalassoma lucasanum",15,NA,NA,250,"Sufficient data",1,220
+"Quantity","PEC",2025,5,6,"La Paz","160","ESPIRITU_SANTO_PARTIDA_NORESTE","20",3,"350","Cephalopholis colonus",15,NA,NA,180,"Sufficient data",1,176.25
+"Quantity","PEC",2025,5,6,"La Paz","160","ESPIRITU_SANTO_PARTIDA_NORESTE","5",3,"321","Microspathodon dorsalis",25,NA,NA,32,"Sufficient data",1,14
+"Quantity","PEC",2025,5,6,"La Paz","160","ESPIRITU_SANTO_PARTIDA_NORESTE","5",3,"367","Scarus perrico",10,NA,NA,50,"Sufficient data",1,10
+"Quantity","PEC",2025,5,6,"La Paz","160","ESPIRITU_SANTO_PARTIDA_NORESTE","5",3,"391","Stegastes rectifraenum",15,NA,NA,130,"Sufficient data",1,105
+"Quantity","PEC",2025,5,6,"La Paz","160","ESPIRITU_SANTO_PARTIDA_NORESTE","5",4,"321","Microspathodon dorsalis",25,NA,NA,17,"Sufficient data",1,14
+"Quantity","PEC",2025,5,6,"La Paz","159","ESPIRITU_SANTO_PAILEBOTE","5",3,"321","Microspathodon dorsalis",25,NA,NA,27,"Sufficient data",1,14
+"Quantity","PEC",2025,5,6,"La Paz","164","ESPIRITU_SANTO_SOANY","10",4,"327","Mulloidichthys dentatus",25,NA,NA,110,"Sufficient data",1,100
+"Quantity","INV",2025,5,5,"Corredor","91","PORTUGUES","5",1,"163","Pocillopora elegans",14,NA,NA,15,"Sufficient data",1,11
+"Quantity","INV",2025,5,5,"Corredor","91","PORTUGUES","5",2,"163","Pocillopora elegans",14,NA,NA,12,"Sufficient data",1,11
+"Quantity","INV",2025,5,5,"Corredor","91","PORTUGUES","5",3,"161","Pocillopora damicornis",64,NA,NA,22,"Sufficient data",1,12
